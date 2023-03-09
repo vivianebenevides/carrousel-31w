@@ -1,6 +1,21 @@
 @charset "UTF-8";
 /* la feuille de style du carrousel */
 /* Le conteneur principale du carrousel */
+.carrousel {
+  position: fixed;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 25%;
+  transform: scale(0);
+  transition: transform 0.05s;
+  background-color: aquamarine;
+}
+
+.carrousel--ouvrir {
+  transform: scale(1);
+}
+
 /* bouton de fermeture de la boîte modale */
 /* conteneur des images du carrousel */
 /* conteneur des boutons radio *//*# sourceMappingURL=style.css.map */
