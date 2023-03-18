@@ -34,7 +34,14 @@ add_action('wp_enqueue_scripts', 'carrousel_enqueue');
 
 function creation_carrousel() 
 {
-return '<div class="carrousel">
+    //ajout des boutons de navigation (fleches gauche et droite)
+return '<div class="carrousel"> 
+        <button class="fleche__gauche" data-direction="reculer">
+            <img src="https://s2.svgbox.net/materialui.svg?ic=arrow_back_ios" width="40" height="40" alt="fleche gauche">
+        </button>
+        <button class="fleche__droite" data-direction ="avancer">
+            <img src="https://s2.svgbox.net/materialui.svg?ic=arrow_forward_ios" width="40" height="40" alt="fleche droite">
+        </button>
         <button class="bouton__x">X</button>
         <figure class="carrousel__figure"></figure>
         <form class="carrousel__form"></form>

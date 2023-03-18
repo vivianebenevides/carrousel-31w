@@ -2,7 +2,8 @@
 
 (function () {
     // fonction IFEE
-    //debugger;
+    let index = 0; // initialise la variable index au chargement de la page
+    let index__precedent = -1; // initialise la variable index__precedent au chargement de la page
     console.log('debut du carrousel');
     //let bouton__ouvrir = document.querySelector('.bouton__ouvrir')
     let elmCarrousel = document.querySelector('.carrousel')
@@ -11,12 +12,16 @@
     let elmGalerie__img = elmGalerie.querySelectorAll('img')
     let elmCarrousel__figure = document.querySelector('.carrousel__figure') // conteneur des images
     let elmCarrousel__form = document.querySelector('.carrousel__form') //conteneur des radio bouton
-    console.log(elmGalerie__img.length)
-    let index = 0; // initialise la variable index au chargement de la page
-    let index__precedent = -1; // initialise la variable index__precedent au chargement de la page
+    //console.log(elmGalerie__img.length)
     ajouter_carrousel(); // appeller la function carrousel au chargement de la page 
-
-
+    let elmBoutonReculer = document.querySelector('.fleche__gauche') // conteneur du bouton de navigation fleche gauche
+    elmBoutonReculer.addEventListener('mousedown', function () {
+        naviguer(elmBoutonReculer.dataset.direction)
+    })
+    let eleBoutonAvancer = document.querySelector('.fleche__droite')  // conteneur du bouton de navigation fleche droite
+    eleBoutonAvancer.addEventListener('mousedown', function () {
+        naviguer(eleBoutonAvancer.dataset.direction)
+    })
     //console.log(bouton__ouvrir.tagName)
 
     // bouton__ouvrir.addEventListener('mousedown', function () {
@@ -32,6 +37,28 @@
         elmCarrousel.classList.remove('carrousel--ouvrir')
     })
 
+    // fonction appelée au clic des boutons de navigation (fleches gauche et droit)
+    function naviguer(direction) {
+        let valeur
+        if (direction == 'avancer') {
+            valeur = 1
+        }
+        else if (direction = 'reculer') {
+            valeur = -1
+        }
+
+        if (index + valeur < 0) {
+            index = elmGalerie__img.length - 1
+        }
+        else if (index + valeur >= elmGalerie__img.length) {
+            index = 0;
+        }
+        else {
+            index += valeur;
+        }
+
+        activer__image(index);
+    }
 
     function ajouter_carrousel() {
         for (const elmImg of elmGalerie__img) {
@@ -46,11 +73,12 @@
         elmCarrousel__img.setAttribute('src', elmImg.getAttribute('src'))
         elmCarrousel__img.classList.add('carrousel__img')
         elmCarrousel__img.dataset.index = index
-        elmImg.dataset.index = index
+        elmImg.dataset.index = index // affecter le dataset.index de la photo cliquée à la variable index
         elmImg.addEventListener('mousedown', function () {
-            activer__image(this.dataset.index)
+            index = parseInt(this.dataset.index)
+            activer__image(index)
         })
-        console.log(elmImg.dataset.index);
+        //console.log(elmImg.dataset.index);
         elmCarrousel__figure.appendChild(elmCarrousel__img)
     }
 
@@ -58,15 +86,17 @@
         let elmCarrousel__radio = document.createElement('input')
         elmCarrousel__radio.setAttribute('type', 'radio')
         elmCarrousel__radio.setAttribute('name', 'radCarrousel')
-        elmCarrousel__radio.dataset.index = index
+        elmCarrousel__radio.dataset.index = index // affecter le dataset.index du radio bouton cliquée à la variable index
         index++
         elmCarrousel__form.appendChild(elmCarrousel__radio)
         elmCarrousel__radio.addEventListener('mousedown', function () {
-            activer__image(this.dataset.index)
+            index = parseInt(this.dataset.index)
+            activer__image(index)
         })
     }
 
     function activer__image(index) {
+        debugger
         // ajout de la classe carrousel--ouvrir dans la liste de classes du elmCarrousel
         if (!elmCarrousel.classList.contains('carrousel--ouvrir')) {
             elmCarrousel.classList.add('carrousel--ouvrir')
@@ -79,6 +109,4 @@
         elmCarrousel__figure.children[index].classList.add('carrousel__img--activer')
         index__precedent = index;
     }
-
-
 })()
