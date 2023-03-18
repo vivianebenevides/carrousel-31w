@@ -76,6 +76,7 @@
         elmImg.dataset.index = index // affecter le dataset.index de la photo cliquée à la variable index
         elmImg.addEventListener('mousedown', function () {
             index = parseInt(this.dataset.index)
+            //check_radio(index)
             activer__image(index)
         })
         //console.log(elmImg.dataset.index);
@@ -86,18 +87,20 @@
         let elmCarrousel__radio = document.createElement('input')
         elmCarrousel__radio.setAttribute('type', 'radio')
         elmCarrousel__radio.setAttribute('name', 'radCarrousel')
+        elmCarrousel__radio.setAttribute('checked', '')
         elmCarrousel__radio.dataset.index = index // affecter le dataset.index du radio bouton cliquée à la variable index
         index++
         elmCarrousel__form.appendChild(elmCarrousel__radio)
         elmCarrousel__radio.addEventListener('mousedown', function () {
             index = parseInt(this.dataset.index)
+            //check_radio(index)
             activer__image(index)
         })
     }
 
     function activer__image(index) {
-        debugger
         // ajout de la classe carrousel--ouvrir dans la liste de classes du elmCarrousel
+        check_radio(index)
         if (!elmCarrousel.classList.contains('carrousel--ouvrir')) {
             elmCarrousel.classList.add('carrousel--ouvrir')
         }
@@ -109,4 +112,10 @@
         elmCarrousel__figure.children[index].classList.add('carrousel__img--activer')
         index__precedent = index;
     }
+
+    //Fonction pour sélectionner le radio bouton correspondent à la valeur de la variable index
+    function check_radio(index) {
+        document.querySelector('input[type="radio"][data-index="' + index + '"]').checked = true
+    }
+
 })()
