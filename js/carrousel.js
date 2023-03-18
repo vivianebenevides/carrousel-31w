@@ -4,7 +4,7 @@
     // fonction IFEE
     //debugger;
     console.log('debut du carrousel');
-    let bouton__ouvrir = document.querySelector('.bouton__ouvrir')
+    //let bouton__ouvrir = document.querySelector('.bouton__ouvrir')
     let elmCarrousel = document.querySelector('.carrousel')
     let elmBouton__x = document.querySelector('.bouton__x')
     let elmGalerie = document.querySelector('.galerie')
@@ -17,15 +17,15 @@
     ajouter_carrousel(); // appeller la function carrousel au chargement de la page 
 
 
-    console.log(bouton__ouvrir.tagName)
+    //console.log(bouton__ouvrir.tagName)
 
-    bouton__ouvrir.addEventListener('mousedown', function () {
-        console.log('boite modale')
-        if (!elmCarrousel.classList.contains('carrousel--ouvrir')) {
-            elmCarrousel.classList.add('carrousel--ouvrir')
-            //ajouter_carrousel()
-        }
-    })
+    // bouton__ouvrir.addEventListener('mousedown', function () {
+    //     console.log('boite modale')
+    //     if (!elmCarrousel.classList.contains('carrousel--ouvrir')) {
+    //         elmCarrousel.classList.add('carrousel--ouvrir')
+    //         //ajouter_carrousel()
+    //     }
+    // })
 
     elmBouton__x.addEventListener('mousedown', function () {
         console.log('boite modale')
