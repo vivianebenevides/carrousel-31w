@@ -2,6 +2,7 @@
 
 (function () {
     // fonction IFEE
+    //debugger;
     console.log('debut du carrousel');
     let bouton__ouvrir = document.querySelector('.bouton__ouvrir')
     let elmCarrousel = document.querySelector('.carrousel')
@@ -11,14 +12,19 @@
     let elmCarrousel__figure = document.querySelector('.carrousel__figure') // conteneur des images
     let elmCarrousel__form = document.querySelector('.carrousel__form') //conteneur des radio bouton
     console.log(elmGalerie__img.length)
+    let index = 0; // initialise la variable index au chargement de la page
+    let index__precedent = -1; // initialise la variable index__precedent au chargement de la page
+    ajouter_carrousel(); // appeller la function carrousel au chargement de la page 
 
 
     console.log(bouton__ouvrir.tagName)
 
     bouton__ouvrir.addEventListener('mousedown', function () {
         console.log('boite modale')
-        elmCarrousel.classList.add('carrousel--ouvrir')
-        ajouter_carrousel()
+        if (!elmCarrousel.classList.contains('carrousel--ouvrir')) {
+            elmCarrousel.classList.add('carrousel--ouvrir')
+            //ajouter_carrousel()
+        }
     })
 
     elmBouton__x.addEventListener('mousedown', function () {
@@ -42,9 +48,6 @@
         elmCarrousel__img.dataset.index = index
         elmCarrousel__figure.appendChild(elmCarrousel__img)
     }
-
-    let index = 0;
-    let index__precedent = -1;
 
     function ajouter_radio() {
         let elmCarrousel__radio = document.createElement('input')
