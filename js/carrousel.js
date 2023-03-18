@@ -46,6 +46,11 @@
         elmCarrousel__img.setAttribute('src', elmImg.getAttribute('src'))
         elmCarrousel__img.classList.add('carrousel__img')
         elmCarrousel__img.dataset.index = index
+        elmImg.dataset.index = index
+        elmImg.addEventListener('mousedown', function () {
+            activer__image(this.dataset.index)
+        })
+        console.log(elmImg.dataset.index);
         elmCarrousel__figure.appendChild(elmCarrousel__img)
     }
 
@@ -62,7 +67,12 @@
     }
 
     function activer__image(index) {
-        //falta fazer abetura do carrousel clicando sobre uma img, e falta flecha do carrolel para poder navergar. falt colocar bouton radio e botao y em posicao absoluta
+        // ajout de la classe carrousel--ouvrir dans la liste de classes du elmCarrousel
+        if (!elmCarrousel.classList.contains('carrousel--ouvrir')) {
+            elmCarrousel.classList.add('carrousel--ouvrir')
+        }
+
+        console.log("index activer image " + index)
         if (index__precedent != -1) {
             elmCarrousel__figure.children[index__precedent].classList.remove('carrousel__img--activer')
         }
